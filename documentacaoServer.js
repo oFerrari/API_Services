@@ -1,5 +1,16 @@
-// bdferrari
-// @#bancodedados
+/**
+ * ============================================
+ * ACESSO BANCO DE DADOS
+ * ============================================
+ * bdferrari
+ * @#bancodedados
+ */
+
+// Inicializar serviço node.js
+// node server.js  #Executa o arquivo `server.js` com o Node.js.
+// node --watch server.js #Executa o arquivo `ServiceWorkerRegistration.js` com o Node.js, e **fica monitorando mudanças** nesse arquivo.
+
+
 const express = require('express');
 const app = express();
 app.use(express.json());

@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+//npm install prisma --save-dev    # Instala o CLI do Prisma como dependência de desenvolvimento (para rodar migrações, gerar modelos, etc.)
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+  name  String
+  age   Int
+}
+
+//npx prisma generate         # Lê seu esquema Prisma e gera o Prisma Client.
+//npx prisma db push          # Envia o schema do arquivo `schema.prisma` para o banco de dados (cria/atualiza tabelas automaticamente, sem gerar migrations) Verifica se esta tudo ok!
+//npm install @prisma/client  #Instala o cliente do Prisma na sua aplicação Node.js. Esse pacote é responsável por permitir que seu código JavaScript/TypeScript se comunique com o banco de dados, usando o Prisma Client que é gerado automaticamente com base no seu schema `schema.prisma`.
+//npx prisma studio           #Abre o Prisma Studio, uma interface gráfica (GUI) para visualizar e editar os dados do banco de dados.
+
+//#ERROR#
+//EPERM: operation not permitted, rename 'C:\Users\andrei.domingos\Documents\API_Services\generated\prisma\query_engine-windows.dll.node.tmp9812'
+// -> 'C:\Users\andrei.domingos\Documents\API_Services\generated\prisma\query_engine-windows.dll.node'
+//Solução: tasklist | findstr node
+//        taskkill /F /PID 3552 /PID 11496
