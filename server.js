@@ -18,15 +18,14 @@ const prisma = new PrismaClient()
 
 // Rota POST /usuarios - Cadastra um novo usuário
 app.post('/usuarios', async (req, res) => {
-    await prisma.user.create({
+    const user = await prisma.user.create({
         data: {
             email : req.body.email,
             name:req.body.name,
             age: req.body.age
         }
     })
-    users.push(req.body) // Adiciona o novo usuário ao array
-    res.status(201).json(req.body)
+    res.status(201).json(user)
     // res.send('Criando novo usuário'); // Envia resposta simples de confirmação
     // console.log(req.body) // Mostra no terminal o corpo da requisição
 })
